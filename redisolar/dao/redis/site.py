@@ -42,8 +42,6 @@ class SiteDaoRedis(SiteDaoBase, RedisDaoBase):
         site_ids_key = self.key_schema.site_ids_key()
         client = kwargs.get("pipeline", self.redis)
         ids = client.smembers(site_ids_key)
-        print("#############################")
-        print(ids)
         site_hashes = []  # type: ignore
         for single_id in ids:
             hash_key = self.key_schema.site_hash_key(single_id)
